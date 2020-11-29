@@ -44,13 +44,6 @@ modules:
         - '/lib/libproto*.a'
         - '/include'
 
-    - name: protobuf-c
-      buildsystem: autotools
-      sources:
-        - type: git
-          url: https://github.com/protobuf-c/protobuf-c.git
-          tag: v1.3.3
-
     - name: boost
       # Borrowed boost build from https://github.com/flathub/org.kde.digikam
       buildsystem: simple
@@ -73,7 +66,7 @@ modules:
           url: https://github.com/raceintospace/raceintospace.git
           # Until there is release tag, freeze in time for repeatable builds
           # comment out following for master
-          commit: 3cac32846694e325422c87ffd1c29e1811d85616
+          commit: v2.0.0rc1
       cleanup:
         - '/include'
         - '/lib/lib*.a'
