@@ -63,6 +63,8 @@ modules:
 
     - name: cereal
       buildsystem: cmake
+      config-opts:
+        - -DBUILD_TESTS=OFF
       sources:
         - type: git
           url: https://github.com/USCiLab/cereal.git
@@ -76,6 +78,8 @@ modules:
           # Until there is release tag, freeze in time for repeatable builds
           # comment out following for master
           tag: v2.0.0rc2
+      config-opts:
+        - -DBUILD_CEREAL=OFF
       cleanup:
         - '/include'
         - '/lib/lib*.a'
