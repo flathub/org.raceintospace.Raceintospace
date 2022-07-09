@@ -23,7 +23,8 @@ modules:
       sources:
         - type: git
           url: https://github.com/open-source-parsers/jsoncpp.git
-          tag: 1.9.5
+          # Since 1.9.4 is enforced out-of-tree build
+          tag: 1.9.3
       cleanup:
         - '/lib/*.a'
         - '/include'
