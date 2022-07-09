@@ -77,7 +77,7 @@ modules:
           url: https://github.com/raceintospace/raceintospace.git
           # Until there is release tag, freeze in time for repeatable builds
           # comment out following for master
-          tag: v2.0.0rc2
+          tag: v2.0.0rc3
       config-opts:
         - -DBUILD_CEREAL=OFF
       cleanup:
