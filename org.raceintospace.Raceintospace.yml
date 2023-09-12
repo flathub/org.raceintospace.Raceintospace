@@ -68,6 +68,8 @@ modules:
           # Until there is release tag, freeze in time for repeatable builds
           # comment out following for master
           commit: v2.0.0rc1
+        - type: patch
+          path: appdata.patch
       cleanup:
         - '/include'
         - '/lib/lib*.a'
