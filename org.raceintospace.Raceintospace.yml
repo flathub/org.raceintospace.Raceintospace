@@ -1,7 +1,7 @@
 # vim: sts=4:
 app-id: org.raceintospace.Raceintospace
 runtime: org.freedesktop.Platform
-runtime-version: '20.08'
+runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 command: raceintospace
 rename-desktop-file: raceintospace.desktop
@@ -11,6 +11,7 @@ finish-args:
     - --socket=x11
     - --socket=pulseaudio
     - --persist=.raceintospace
+    - --device=dri
     # Until support for SDL2, only X11 will work
     #- --socket=wayland
 
@@ -67,6 +68,8 @@ modules:
           # Until there is release tag, freeze in time for repeatable builds
           # comment out following for master
           commit: v2.0.0rc1
+        - type: patch
+          path: appdata.patch
       cleanup:
         - '/include'
         - '/lib/lib*.a'

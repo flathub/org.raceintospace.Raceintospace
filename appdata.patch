@@ -1,0 +1,25 @@
+From 3a6df7c0ba2d380070c68091105aa78bfd06c819 Mon Sep 17 00:00:00 2001
+From: bbhtt <bbhtt.zn0i8@slmail.me>
+Date: Tue, 12 Sep 2023 08:02:54 +0530
+Subject: [PATCH] Fix screenshot location
+
+---
+ doc/org.raceintospace.Raceintospace.metainfo.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/doc/org.raceintospace.Raceintospace.metainfo.xml b/doc/org.raceintospace.Raceintospace.metainfo.xml
+index b12cbfc..b878180 100644
+--- a/doc/org.raceintospace.Raceintospace.metainfo.xml
++++ b/doc/org.raceintospace.Raceintospace.metainfo.xml
+@@ -40,7 +40,7 @@
+   </description>
+   <screenshots>
+     <screenshot type="default">
+-      <image>http://www.raceintospace.org/images/screenshots/splash_screen.png</image>
++      <image>https://raw.githubusercontent.com/raceintospace/raceintospace/master/doc/manual/image_0.jpg</image>
+     </screenshot>
+ 
+     <screenshot>
+-- 
+2.41.0
+
