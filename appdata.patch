@@ -1,17 +1,14 @@
-From 3a6df7c0ba2d380070c68091105aa78bfd06c819 Mon Sep 17 00:00:00 2001
-From: bbhtt <bbhtt.zn0i8@slmail.me>
-Date: Tue, 12 Sep 2023 08:02:54 +0530
-Subject: [PATCH] Fix screenshot location
-
----
- doc/org.raceintospace.Raceintospace.metainfo.xml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/doc/org.raceintospace.Raceintospace.metainfo.xml b/doc/org.raceintospace.Raceintospace.metainfo.xml
-index b12cbfc..b878180 100644
---- a/doc/org.raceintospace.Raceintospace.metainfo.xml
-+++ b/doc/org.raceintospace.Raceintospace.metainfo.xml
-@@ -40,7 +40,7 @@
+--- a/doc/org.raceintospace.Raceintospace.metainfo.xml	2020-11-14 10:46:04.000000000 -0500
++++ b/doc/org.raceintospace.Raceintospace.metainfo.xml	2025-01-30 20:04:17.586625941 -0500
+@@ -10,6 +10,7 @@
+   <metadata_license>CC0-1.0</metadata_license>
+   <project_license>GPL-2.0+</project_license>
+   <content_rating type="oars-1.1" />
++  <developer_name>Raceintospace</developer_name>
+   <description>
+     <p>
+     Race Into Space is a simulation of the US-Soviet Space Race.
+@@ -40,7 +41,7 @@
    </description>
    <screenshots>
      <screenshot type="default">
@@ -20,6 +17,17 @@ index b12cbfc..b878180 100644
      </screenshot>
  
      <screenshot>
--- 
-2.41.0
-
+@@ -53,13 +54,10 @@
+   </screenshots>
+   <releases>
+     <release version="1.2" date="2020-09-14" type="development">
+-      <location>https://github.com/raceintospace/raceintospace/tags</location>
+     </release>
+     <release version="1.1" date="2013-04-18" type="stable">
+-      <location>https://sourceforge.net/projects/raceintospace/files/Race%20Into%20Space/1.1/</location>
+     </release>
+     <release version="1.0" date="2011-07-28" type="stable">
+-      <location>https://sourceforge.net/projects/raceintospace/files/Race%20Into%20Space/1.0/</location>
+     </release>
+   </releases>
+ </component>
