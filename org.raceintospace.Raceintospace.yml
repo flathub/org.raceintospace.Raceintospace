@@ -1,7 +1,7 @@
 # vim: sts=4:
 app-id: org.raceintospace.Raceintospace
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: raceintospace
 rename-desktop-file: raceintospace.desktop
@@ -14,26 +14,25 @@ finish-args:
     - --device=dri
     # Until support for SDL2, only X11 will work
     #- --socket=wayland
+cleanup:
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - /share/aclocal
+  - /share/pixmaps
+  - '*.la'
+  - '*.a'
 
 modules:
     - shared-modules/SDL/sdl12-compat.json
-    
+    - shared-modules/physfs/physfs.json
+
     - name: jsoncpp
       buildsystem: cmake
       sources:
         - type: git
           url: https://github.com/open-source-parsers/jsoncpp.git
           tag: 1.9.3
-      cleanup:
-        - '/lib/*.a'
-        - '/include'
-
-    - name: physfs
-      buildsystem: cmake
-      sources:
-        - type: archive
-          url: https://icculus.org/physfs/downloads/physfs-3.0.2.tar.bz2
-          sha256: 304df76206d633df5360e738b138c94e82ccf086e50ba84f456d3f8432f9f863
 
     - name: protobuf
       buildsystem: autotools
@@ -41,9 +40,6 @@ modules:
         - type: git
           url: https://github.com/protocolbuffers/protobuf.git
           tag: v3.13.0
-      cleanup:
-        - '/lib/libproto*.a'
-        - '/include'
 
     - name: boost
       # Borrowed boost build from https://github.com/flathub/org.kde.digikam
@@ -52,9 +48,6 @@ modules:
         - ./bootstrap.sh --prefix=/app
         - ./b2 --with-headers -j $FLATPAK_BUILDER_N_JOBS
         - ./b2 --with-headers install
-      cleanup:
-        - "/lib/libboost_*.a"
-        - '/include'
       sources:
         - type: archive
           url: https://downloads.sourceforge.net/boost/boost/1.74.0/boost_1_74_0.tar.bz2
@@ -62,6 +55,13 @@ modules:
 
     - name: raceintospace
       buildsystem: cmake
+      config-opts:
+        - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      # Icon should be in different place build system puts it, workaround
+      # .xpm icons are unsupported
+      post-install:
+        - install -Dm644 /app/share/pixmaps/raceintospace.png /app/share/icons/hicolor/128x128/apps/org.raceintospace.Raceintospace.png
+        - desktop-file-edit --set-key=Icon --set-value=org.raceintospace.Raceintospace /app/share/applications/raceintospace.desktop
       sources:
         - type: git
           url: https://github.com/raceintospace/raceintospace.git
@@ -70,12 +70,4 @@ modules:
           tag: v2.0.0rc1
         - type: patch
           path: appdata.patch
-      cleanup:
-        - '/include'
-        - '/lib/lib*.a'
-      # Icon should be in different place build system puts it, workaround
-      # .xpm icons are unsupported
-      post-install:
-        - install -D /app/share/pixmaps/raceintospace.png /app/share/icons/hicolor/128x128/apps/org.raceintospace.Raceintospace.png
-        - desktop-file-edit --set-key=Icon --set-value="org.raceintospace.Raceintospace" "/app/share/applications/raceintospace.desktop"
 
