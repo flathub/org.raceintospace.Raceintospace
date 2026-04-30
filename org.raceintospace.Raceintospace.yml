@@ -8,12 +8,11 @@ rename-desktop-file: raceintospace.desktop
 
 finish-args:
     - --share=ipc
-    - --socket=x11
+    - --socket=fallback-x11
+    - --socket=wayland
     - --socket=pulseaudio
     - --persist=.raceintospace
     - --device=dri
-    # Until support for SDL2, only X11 will work
-    #- --socket=wayland
 cleanup:
   - /include
   - /lib/cmake
