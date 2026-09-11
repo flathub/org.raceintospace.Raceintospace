@@ -1,18 +1,16 @@
-# vim: sts=4:
 app-id: org.raceintospace.Raceintospace
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 command: raceintospace
 rename-desktop-file: raceintospace.desktop
-
 finish-args:
-    - --share=ipc
-    - --socket=fallback-x11
-    - --socket=wayland
-    - --socket=pulseaudio
-    - --persist=.raceintospace
-    - --device=dri
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --persist=.raceintospace
+  - --device=dri
 cleanup:
   - /include
   - /lib/cmake
@@ -21,7 +19,6 @@ cleanup:
   - /share/pixmaps
   - '*.la'
   - '*.a'
-
 modules:
   - name: raceintospace
     buildsystem: cmake
@@ -31,15 +28,14 @@ modules:
     # .xpm icons are unsupported
     post-install:
       - install -Dm644 /app/share/pixmaps/raceintospace.png /app/share/icons/hicolor/128x128/apps/org.raceintospace.Raceintospace.png
-      - desktop-file-edit --set-key=Icon --set-value=org.raceintospace.Raceintospace /app/share/applications/raceintospace.desktop
+      - desktop-file-edit --set-icon=org.raceintospace.Raceintospace /app/share/applications/raceintospace.desktop
     sources:
       - type: git
         url: https://github.com/raceintospace/raceintospace.git
         # comment out following for master
         tag: v2.0.0
       - type: patch
-        paths:
-          - 0001-Update-appdata-file.patch
+        path: 0001-Update-appdata-file.patch
     modules:
       - shared-modules/SDL/sdl12-compat.json
       - shared-modules/physfs/physfs.json
@@ -60,6 +56,7 @@ modules:
           - type: git
             url: https://github.com/open-source-parsers/jsoncpp.git
             tag: 1.9.3
+            commit: 6aba23f4a8628d599a9ef7fa4811c4ff6e4070e2
 
       - name: protobuf
         buildsystem: autotools
@@ -67,6 +64,7 @@ modules:
           - type: git
             url: https://github.com/protocolbuffers/protobuf.git
             tag: v3.13.0
+            commit: fde7cf7358ec7cd69e8db9be4f1fa6a5c431386a
 
       - name: boost
         buildsystem: simple
@@ -80,10 +78,12 @@ modules:
 
       - name: cereal
         buildsystem: cmake
+        config-opts:
+          - -DSKIP_PERFORMANCE_COMPARISON=ON
+          - -DBUILD_TESTS=OFF
         sources:
           - type: git
             url: https://github.com/USCiLab/cereal.git
             tag: v1.3.2
-        config-opts:
-          - -DSKIP_PERFORMANCE_COMPARISON=ON
-          - -DBUILD_TESTS=OFF
+            commit: ebef1e929807629befafbb2918ea1a08c7194554
+
